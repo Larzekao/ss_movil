@@ -65,13 +65,20 @@ final goRouter = GoRouter(
     ),
     GoRoute(
       path: '/accounts/roles/new',
-      builder: (context, state) => const RoleFormPage(),
+      builder: (context, state) => const RoleFormPage(isEdit: false),
+    ),
+    GoRoute(
+      path: '/accounts/roles/:id',
+      builder: (context, state) {
+        final roleId = state.pathParameters['id']!;
+        return RoleFormPage(roleId: roleId, isEdit: false);
+      },
     ),
     GoRoute(
       path: '/accounts/roles/:id/edit',
       builder: (context, state) {
         final roleId = state.pathParameters['id']!;
-        return RoleFormPage(roleId: roleId);
+        return RoleFormPage(roleId: roleId, isEdit: true);
       },
     ),
 

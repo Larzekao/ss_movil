@@ -203,6 +203,25 @@ class HomePage extends ConsumerWidget {
                         ),
                       ),
 
+                      const SizedBox(height: 12),
+
+                      // Botón protegido: Gestión de Roles
+                      Can(
+                        permissionCode: 'roles.leer',
+                        child: ElevatedButton.icon(
+                          onPressed: () {
+                            context.go('/accounts/roles');
+                          },
+                          icon: const Icon(Icons.badge),
+                          label: const Text('Gestión de Roles'),
+                          style: ElevatedButton.styleFrom(
+                            padding: const EdgeInsets.all(16),
+                            backgroundColor: Colors.deepPurple,
+                            foregroundColor: Colors.white,
+                          ),
+                        ),
+                      ),
+
                       const SizedBox(height: 24),
 
                       // Mensaje especial para superadmin
