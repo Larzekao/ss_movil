@@ -11,6 +11,13 @@ import 'package:ss_movil/features/accounts/presentation/pages/users/user_detail_
 import 'package:ss_movil/features/accounts/presentation/pages/roles/roles_list_page.dart';
 import 'package:ss_movil/features/accounts/presentation/pages/roles/role_form_page.dart';
 import 'package:ss_movil/features/accounts/presentation/pages/permissions/permissions_list_page.dart';
+import 'package:ss_movil/features/products/presentation/pages/products/products_list_page.dart';
+import 'package:ss_movil/features/products/presentation/pages/products/product_detail_page.dart';
+import 'package:ss_movil/features/products/presentation/pages/products/product_form_page.dart';
+import 'package:ss_movil/features/products/presentation/pages/categories/categories_list_page.dart';
+import 'package:ss_movil/features/products/presentation/pages/categories/category_form_page.dart';
+import 'package:ss_movil/features/products/presentation/pages/brands/brands_list_page.dart';
+import 'package:ss_movil/features/products/presentation/pages/brands/brand_form_page.dart';
 import 'package:ss_movil/shared/widgets/protected_route.dart';
 
 /// Configuración de rutas con go_router
@@ -86,6 +93,64 @@ final goRouter = GoRouter(
     GoRoute(
       path: '/accounts/permissions',
       builder: (context, state) => const PermissionsListPage(),
+    ),
+
+    // === RUTAS DE PRODUCTOS ===
+    GoRoute(
+      path: '/products',
+      builder: (context, state) => const ProductsListPage(),
+    ),
+    GoRoute(
+      path: '/products/new',
+      builder: (context, state) => const ProductFormPage(),
+    ),
+    GoRoute(
+      path: '/products/:slug',
+      builder: (context, state) {
+        final slug = state.pathParameters['slug']!;
+        return ProductDetailPage(slug: slug);
+      },
+    ),
+    GoRoute(
+      path: '/products/:slug/edit',
+      builder: (context, state) {
+        final slug = state.pathParameters['slug']!;
+        return ProductFormPage(slug: slug);
+      },
+    ),
+
+    // === RUTAS DE CATEGORÍAS ===
+    GoRoute(
+      path: '/categories',
+      builder: (context, state) => const CategoriesListPage(),
+    ),
+    GoRoute(
+      path: '/categories/new',
+      builder: (context, state) => const CategoryFormPage(),
+    ),
+    GoRoute(
+      path: '/categories/:id/edit',
+      builder: (context, state) {
+        final categoryId = state.pathParameters['id']!;
+        return CategoryFormPage(categoryId: categoryId);
+      },
+    ),
+
+    // === RUTAS DE MARCAS ===
+    GoRoute(
+      path: '/brands',
+      builder: (context, state) => const BrandsListPage(),
+    ),
+    GoRoute(
+      path: '/brands/new',
+      builder: (context, state) => const BrandFormPage(),
+    ),
+    GoRoute(
+      path: '/brands/:id/edit',
+      builder: (context, state) {
+        final brandId = state.pathParameters['id']!;
+        return BrandFormPage(brandId: brandId);
+      },
     ),
   ],
   errorBuilder: (context, state) =>

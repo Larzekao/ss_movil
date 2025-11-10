@@ -90,64 +90,76 @@ class HomePage extends ConsumerWidget {
                       ),
                       const SizedBox(height: 16),
 
-                      // Botón protegido: Crear Producto
+                      // Sección: Productos y Catálogo
+                      Text(
+                        'Gestión de Productos',
+                        style: Theme.of(context).textTheme.titleMedium
+                            ?.copyWith(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.deepPurple,
+                            ),
+                      ),
+                      const SizedBox(height: 8),
+
+                      // Botón protegido: Gestión de Productos
                       Can(
-                        permissionCode: 'productos.crear',
-                        fallback: Container(
-                          padding: const EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                            color: Colors.grey.shade200,
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: const [
-                              Icon(Icons.lock, color: Colors.grey),
-                              SizedBox(width: 8),
-                              Text(
-                                'Crear Producto (Sin permiso)',
-                                style: TextStyle(color: Colors.grey),
-                              ),
-                            ],
-                          ),
-                        ),
+                        permissionCode: 'productos.leer',
                         child: ElevatedButton.icon(
                           onPressed: () {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text('Navegando a Crear Producto...'),
-                                duration: Duration(seconds: 2),
-                              ),
-                            );
+                            context.go('/products');
                           },
-                          icon: const Icon(Icons.add_shopping_cart),
-                          label: const Text('Crear Producto'),
+                          icon: const Icon(Icons.inventory),
+                          label: const Text('Productos'),
                           style: ElevatedButton.styleFrom(
                             padding: const EdgeInsets.all(16),
-                            backgroundColor: Colors.green,
+                            backgroundColor: Colors.deepPurple,
                             foregroundColor: Colors.white,
                           ),
                         ),
                       ),
 
-                      const SizedBox(height: 12),
+                      const SizedBox(height: 8),
 
-                      // Botón protegido: Editar Productos
+                      // Botón protegido: Gestión de Categorías
                       Can(
-                        permissionCode: 'productos.editar',
+                        permissionCode: 'categorias.leer',
                         child: ElevatedButton.icon(
                           onPressed: () {
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(
                                 content: Text(
-                                  'Navegando a Editar Productos...',
+                                  'Módulo de Categorías: Próximamente',
                                 ),
                                 duration: Duration(seconds: 2),
                               ),
                             );
                           },
-                          icon: const Icon(Icons.edit),
-                          label: const Text('Editar Productos'),
+                          icon: const Icon(Icons.category),
+                          label: const Text('Categorías'),
+                          style: ElevatedButton.styleFrom(
+                            padding: const EdgeInsets.all(16),
+                            backgroundColor: Colors.teal,
+                            foregroundColor: Colors.white,
+                          ),
+                        ),
+                      ),
+
+                      const SizedBox(height: 8),
+
+                      // Botón protegido: Gestión de Marcas
+                      Can(
+                        permissionCode: 'marcas.leer',
+                        child: ElevatedButton.icon(
+                          onPressed: () {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text('Módulo de Marcas: Próximamente'),
+                                duration: Duration(seconds: 2),
+                              ),
+                            );
+                          },
+                          icon: const Icon(Icons.branding_watermark),
+                          label: const Text('Marcas'),
                           style: ElevatedButton.styleFrom(
                             padding: const EdgeInsets.all(16),
                             backgroundColor: Colors.orange,
@@ -156,35 +168,18 @@ class HomePage extends ConsumerWidget {
                         ),
                       ),
 
-                      const SizedBox(height: 12),
+                      const SizedBox(height: 16),
 
-                      // Botón protegido: Ver Reportes
-                      CanMultiple(
-                        permissionCodes: [
-                          'reportes.ventas',
-                          'reportes.inventario',
-                        ],
-                        requireAll: false, // Cualquiera de los dos
-                        child: ElevatedButton.icon(
-                          onPressed: () {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text('Navegando a Reportes...'),
-                                duration: Duration(seconds: 2),
-                              ),
-                            );
-                          },
-                          icon: const Icon(Icons.assessment),
-                          label: const Text('Ver Reportes'),
-                          style: ElevatedButton.styleFrom(
-                            padding: const EdgeInsets.all(16),
-                            backgroundColor: Colors.purple,
-                            foregroundColor: Colors.white,
-                          ),
-                        ),
+                      // Sección: Administración
+                      Text(
+                        'Administración',
+                        style: Theme.of(context).textTheme.titleMedium
+                            ?.copyWith(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.blue,
+                            ),
                       ),
-
-                      const SizedBox(height: 12),
+                      const SizedBox(height: 8),
 
                       // Botón protegido: Panel de Admin
                       Can(
@@ -203,7 +198,7 @@ class HomePage extends ConsumerWidget {
                         ),
                       ),
 
-                      const SizedBox(height: 12),
+                      const SizedBox(height: 8),
 
                       // Botón protegido: Gestión de Roles
                       Can(
@@ -216,7 +211,37 @@ class HomePage extends ConsumerWidget {
                           label: const Text('Gestión de Roles'),
                           style: ElevatedButton.styleFrom(
                             padding: const EdgeInsets.all(16),
-                            backgroundColor: Colors.deepPurple,
+                            backgroundColor: Colors.indigo,
+                            foregroundColor: Colors.white,
+                          ),
+                        ),
+                      ),
+
+                      const SizedBox(height: 8),
+
+                      // Botón protegido: Ver Reportes
+                      CanMultiple(
+                        permissionCodes: [
+                          'reportes.ventas',
+                          'reportes.inventario',
+                        ],
+                        requireAll: false, // Cualquiera de los dos
+                        child: ElevatedButton.icon(
+                          onPressed: () {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text(
+                                  'Módulo de Reportes: Próximamente',
+                                ),
+                                duration: Duration(seconds: 2),
+                              ),
+                            );
+                          },
+                          icon: const Icon(Icons.assessment),
+                          label: const Text('Ver Reportes'),
+                          style: ElevatedButton.styleFrom(
+                            padding: const EdgeInsets.all(16),
+                            backgroundColor: Colors.purple,
                             foregroundColor: Colors.white,
                           ),
                         ),

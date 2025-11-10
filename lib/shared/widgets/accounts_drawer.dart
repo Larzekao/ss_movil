@@ -14,6 +14,7 @@ class AccountsDrawer extends StatefulWidget {
 
 class _AccountsDrawerState extends State<AccountsDrawer> {
   bool _accountsExpanded = false;
+  bool _productsExpanded = false;
 
   @override
   Widget build(BuildContext context) {
@@ -100,6 +101,61 @@ class _AccountsDrawerState extends State<AccountsDrawer> {
                 onTap: () {
                   Navigator.pop(context);
                   context.go('/accounts/permissions');
+                },
+              ),
+            ],
+          ),
+
+          const Divider(),
+
+          // Paquete: Gestión de Productos
+          ExpansionTile(
+            leading: const Icon(Icons.inventory_2, color: Colors.deepOrange),
+            title: const Text('Gestión de Productos'),
+            initiallyExpanded: _productsExpanded,
+            onExpansionChanged: (expanded) {
+              setState(() {
+                _productsExpanded = expanded;
+              });
+            },
+            children: [
+              // Productos
+              ListTile(
+                contentPadding: const EdgeInsets.only(left: 72, right: 16),
+                leading: const Icon(Icons.checkroom, color: Colors.purple),
+                title: const Text('Productos'),
+                selected: widget.currentRoute?.startsWith('/products') ?? false,
+                onTap: () {
+                  Navigator.pop(context);
+                  context.go('/products');
+                },
+              ),
+
+              // Categorías
+              ListTile(
+                contentPadding: const EdgeInsets.only(left: 72, right: 16),
+                leading: const Icon(Icons.category, color: Colors.teal),
+                title: const Text('Categorías'),
+                selected:
+                    widget.currentRoute?.startsWith('/categories') ?? false,
+                onTap: () {
+                  Navigator.pop(context);
+                  context.go('/categories');
+                },
+              ),
+
+              // Marcas
+              ListTile(
+                contentPadding: const EdgeInsets.only(left: 72, right: 16),
+                leading: const Icon(
+                  Icons.branding_watermark,
+                  color: Colors.purple,
+                ),
+                title: const Text('Marcas'),
+                selected: widget.currentRoute?.startsWith('/brands') ?? false,
+                onTap: () {
+                  Navigator.pop(context);
+                  context.go('/brands');
                 },
               ),
             ],
