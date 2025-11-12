@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ss_movil/core/env/env.dart';
 import 'package:ss_movil/core/storage/token_storage.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
@@ -18,7 +19,7 @@ final tokenStorageProvider = Provider<TokenStorage>((ref) {
 final dioProvider = Provider<Dio>((ref) {
   final dio = Dio(
     BaseOptions(
-      baseUrl: 'http://10.0.2.2:8000/api',
+      baseUrl: Env.apiBaseUrl,
       connectTimeout: const Duration(seconds: 10),
       receiveTimeout: const Duration(seconds: 10),
       contentType: Headers.jsonContentType,
