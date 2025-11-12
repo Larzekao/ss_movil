@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:ss_movil/core/providers/app_providers.dart';
 import 'package:ss_movil/shared/widgets/can.dart';
 
@@ -154,7 +155,50 @@ class AdminPage extends ConsumerWidget {
 
               const SizedBox(height: 24),
 
-              // Sección de reportes (requiere múltiples permisos)
+              // Sección de gestión de órdenes
+              Text(
+                'Administración de Órdenes',
+                style: Theme.of(
+                  context,
+                ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 12),
+
+              Can(
+                permissionCode: 'ordenes.listar',
+                child: Card(
+                  child: ListTile(
+                    leading: const Icon(Icons.receipt_long, color: Colors.teal),
+                    title: const Text('Ver Órdenes'),
+                    subtitle: const Text(
+                      'Gestionar todas las órdenes del sistema',
+                    ),
+                    trailing: const Icon(Icons.arrow_forward_ios),
+                    onTap: () {
+                      context.push('/admin/orders');
+                    },
+                  ),
+                ),
+              ),
+
+              Can(
+                permissionCode: 'ordenes.editar',
+                child: Card(
+                  child: ListTile(
+                    leading: const Icon(Icons.edit, color: Colors.amber),
+                    title: const Text('Cambiar Estado de Órdenes'),
+                    subtitle: const Text(
+                      'Actualizar estado, reembolsar o cancelar',
+                    ),
+                    trailing: const Icon(Icons.arrow_forward_ios),
+                    onTap: () {
+                      _showSnackBar(context, 'Navegar a Órdenes');
+                    },
+                  ),
+                ),
+              ),
+
+              const SizedBox(height: 24),
               Text(
                 'Reportes y Estadísticas',
                 style: Theme.of(
@@ -178,6 +222,30 @@ class AdminPage extends ConsumerWidget {
                       _showSnackBar(context, 'Navegar a Reportes');
                     },
                   ),
+                ),
+              ),
+
+              const SizedBox(height: 24),
+
+              // Sección de IA
+              Text(
+                'Inteligencia Artificial',
+                style: Theme.of(
+                  context,
+                ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 12),
+
+              Card(
+                child: ListTile(
+                  leading: const Icon(
+                    Icons.analytics,
+                    color: Colors.deepPurple,
+                  ),
+                  title: const Text('Dashboard IA'),
+                  subtitle: const Text('Predicciones y análisis de ventas'),
+                  trailing: const Icon(Icons.arrow_forward_ios),
+                  onTap: () => context.go('/admin/ai'),
                 ),
               ),
 

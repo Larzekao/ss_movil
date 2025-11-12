@@ -1,0 +1,24 @@
+{
+  // Flutter Hot Reload Configuration
+  // Hacer hot restart por defecto en lugar de hot reload
+  "dart.flutterHotRestartOnSave": true,
+  
+  // Esto hace que los cambios se apliquen más agresivamente
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 1000,
+  
+  // Configuración adicional de Flutter
+  "dart.flutterSdkPath": null,
+  "dart.lineLength": 120,
+  
+  // Para que el hot reload sea más efectivo
+  "[dart]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "editor.rulers": [120],
+    "editor.selectionHighlight": false,
+    "editor.suggestSelection": "first",
+    "editor.tabCompletion": "onlySnippets",
+    "editor.wordBasedSuggestions": "off"
+  }
+}

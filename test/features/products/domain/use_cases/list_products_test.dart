@@ -113,8 +113,10 @@ void main() {
       ).thenAnswer((_) async => Right(mockPagedResponse));
 
       // Act
-      final result =
-          await mockRepository.listProducts(minPrice: 50.0, maxPrice: 150.0);
+      final result = await mockRepository.listProducts(
+        minPrice: 50.0,
+        maxPrice: 150.0,
+      );
 
       // Assert
       expect(result, isA<Right<Failure, PagedProducts>>());
@@ -122,13 +124,18 @@ void main() {
         pagedProducts,
       ) {
         // Verificar que el producto esté dentro del rango de precio
-        expect(pagedProducts.results.first.precio.cantidad,
-            greaterThanOrEqualTo(50.0));
-        expect(pagedProducts.results.first.precio.cantidad,
-            lessThanOrEqualTo(150.0));
+        expect(
+          pagedProducts.results.first.precio.cantidad,
+          greaterThanOrEqualTo(50.0),
+        );
+        expect(
+          pagedProducts.results.first.precio.cantidad,
+          lessThanOrEqualTo(150.0),
+        );
       });
-      verify(() => mockRepository.listProducts(minPrice: 50.0, maxPrice: 150.0))
-          .called(1);
+      verify(
+        () => mockRepository.listProducts(minPrice: 50.0, maxPrice: 150.0),
+      ).called(1);
     });
 
     test('debe manejar paginación correctamente', () async {
@@ -198,10 +205,9 @@ void main() {
 
     test('debe retornar ServerFailure cuando el repositorio falla', () async {
       // Arrange
-      when(
-        () => mockRepository.listProducts(),
-      ).thenAnswer((_) async =>
-          const Left(Failure.server(message: 'Error de servidor')));
+      when(() => mockRepository.listProducts()).thenAnswer(
+        (_) async => const Left(Failure.server(message: 'Error de servidor')),
+      );
 
       // Act
       final result = await mockRepository.listProducts();
@@ -217,6 +223,8 @@ void main() {
           server: (message, statusCode) => expect(message, 'Error de servidor'),
           validation: (message, errors) =>
               fail('No debería ser ValidationFailure'),
+          notFound: (message, statusCode) =>
+              fail('No debería ser NotFoundFailure'),
           unknown: (message) => fail('No debería ser UnknownFailure'),
         );
       }, (_) => fail('No debería retornar productos'));

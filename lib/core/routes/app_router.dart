@@ -18,7 +18,12 @@ import 'package:ss_movil/features/products/presentation/pages/categories/categor
 import 'package:ss_movil/features/products/presentation/pages/categories/category_form_page.dart';
 import 'package:ss_movil/features/products/presentation/pages/brands/brands_list_page.dart';
 import 'package:ss_movil/features/products/presentation/pages/brands/brand_form_page.dart';
+import 'package:ss_movil/features/orders_admin/presentation/pages/orders_page.dart';
+import 'package:ss_movil/features/orders_admin/presentation/pages/order_detail_page.dart';
+import 'package:ss_movil/features/reports/presentation/reports_page.dart';
+import 'package:ss_movil/features/ai/presentation/ai_dashboard_page.dart';
 import 'package:ss_movil/shared/widgets/protected_route.dart';
+import 'package:ss_movil/shared/pages/forbidden_page.dart';
 
 /// Configuración de rutas con go_router
 final goRouter = GoRouter(
@@ -151,6 +156,49 @@ final goRouter = GoRouter(
         final brandId = state.pathParameters['id']!;
         return BrandFormPage(brandId: brandId);
       },
+    ),
+
+    // === RUTAS DE ÓRDENES (ADMIN) ===
+    GoRoute(
+      path: '/admin/orders',
+      builder: (context, state) => const ProtectedRoute(
+        requiredPermission: 'ordenes.listar',
+        child: OrdersPage(),
+      ),
+    ),
+    GoRoute(
+      path: '/admin/orders/:id',
+      builder: (context, state) {
+        final orderId = state.pathParameters['id']!;
+        return ProtectedRoute(
+          requiredPermission: 'ordenes.ver',
+          child: OrderDetailPage(orderId: orderId),
+        );
+      },
+    ),
+
+    // === RUTAS DE REPORTES ===
+    GoRoute(
+      path: '/admin/reports',
+      builder: (context, state) => const ProtectedRoute(
+        requiredPermission: 'reportes.generar',
+        child: ReportsPage(),
+      ),
+    ),
+
+    // === RUTAS DE IA ===
+    GoRoute(
+      path: '/admin/ai',
+      builder: (context, state) => const ProtectedRoute(
+        requiredPermission: 'admin.acceso',
+        child: AiDashboardPage(),
+      ),
+    ),
+
+    // === RUTAS DE ERROR ===
+    GoRoute(
+      path: '/forbidden',
+      builder: (context, state) => const ForbiddenPage(),
     ),
   ],
   errorBuilder: (context, state) =>

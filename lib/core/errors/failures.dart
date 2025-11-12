@@ -17,11 +17,15 @@ class Failure with _$Failure {
   const factory Failure.server({required String message, int? statusCode}) =
       ServerFailure;
 
-  /// Error de validación (400)
+  /// Error de validación (400, 422)
   const factory Failure.validation({
     required String message,
     Map<String, List<String>>? errors,
   }) = ValidationFailure;
+
+  /// Recurso no encontrado (404)
+  const factory Failure.notFound({required String message, int? statusCode}) =
+      NotFoundFailure;
 
   /// Error desconocido
   const factory Failure.unknown({required String message}) = UnknownFailure;

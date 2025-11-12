@@ -124,6 +124,7 @@ class BrandsListNotifier extends StateNotifier<BrandsListState> {
       auth: (message, statusCode) => message,
       server: (message, statusCode) => message,
       network: (message, statusCode) => message,
+      notFound: (message, statusCode) => message,
       unknown: (message) => message,
     );
   }

@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:ss_movil/features/products/domain/entities/size.dart';
 import 'package:ss_movil/features/products/domain/entities/stock.dart';
 import 'package:ss_movil/features/products/infrastructure/dtos/size_dto.dart';
 
@@ -42,7 +43,9 @@ class StockDto with _$StockDto {
       tallaDetalle: tallaDetalle?.toEntity() ?? _createDefaultSize(),
       cantidad: cantidad,
       stockMinimo: stockMinimo,
-      createdAt: createdAt.isNotEmpty ? _parseDateTime(createdAt) : DateTime.now(),
+      createdAt: createdAt.isNotEmpty
+          ? _parseDateTime(createdAt)
+          : DateTime.now(),
       updatedAt: updatedAt != null && updatedAt!.isNotEmpty
           ? _parseDateTime(updatedAt!)
           : null,

@@ -100,6 +100,7 @@ void main() {
           auth: (message, _) => fail('Should not be auth failure'),
           server: (message, _) => expect(message, 'Error de servidor'),
           validation: (message, _) => fail('Should not be validation failure'),
+          notFound: (message, _) => fail('Should not be notFound failure'),
           unknown: (message) => fail('Should not be unknown failure'),
         );
       }, (pagedProducts) => fail('No debería retornar productos'));

@@ -40,6 +40,21 @@ class _LoginPageState extends ConsumerState<LoginPage> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    // Resetear el estado cuando se carga el login
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final currentState = ref.read(authControllerProvider);
+      currentState.whenOrNull(
+        authenticating: () {
+          // Si está en authenticating al entrar a login, forzar logout
+          ref.read(authControllerProvider.notifier).logout();
+        },
+      );
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     final authState = ref.watch(authControllerProvider);
 
@@ -53,6 +68,12 @@ class _LoginPageState extends ConsumerState<LoginPage> {
         },
       );
     });
+
+    // Verificar si está cargando
+    final isLoading = authState.maybeWhen(
+      authenticating: () => true,
+      orElse: () => false,
+    );
 
     return Scaffold(
       appBar: AppBar(title: const Text('Iniciar Sesión')),
@@ -73,6 +94,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
               TextFormField(
                 controller: _emailController,
                 keyboardType: TextInputType.emailAddress,
+                enabled: !isLoading,
                 decoration: const InputDecoration(
                   labelText: 'Email',
                   border: OutlineInputBorder(),
@@ -92,6 +114,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
               TextFormField(
                 controller: _passwordController,
                 obscureText: true,
+                enabled: !isLoading,
                 decoration: const InputDecoration(
                   labelText: 'Contraseña',
                   border: OutlineInputBorder(),
@@ -106,22 +129,20 @@ class _LoginPageState extends ConsumerState<LoginPage> {
               ),
               const SizedBox(height: 24),
               ElevatedButton(
-                onPressed: authState.maybeWhen(
-                  authenticating: () => null,
-                  orElse: () => _handleLogin,
-                ),
+                onPressed: isLoading ? null : _handleLogin,
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.all(16),
                 ),
-                child: authState.maybeWhen(
-                  authenticating: () => const SizedBox(
-                    height: 20,
-                    width: 20,
-                    child: CircularProgressIndicator(strokeWidth: 2),
-                  ),
-                  orElse: () =>
-                      const Text('INGRESAR', style: TextStyle(fontSize: 16)),
-                ),
+                child: isLoading
+                    ? const SizedBox(
+                        height: 20,
+                        width: 20,
+                        child: CircularProgressIndicator(
+                          strokeWidth: 2,
+                          valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                        ),
+                      )
+                    : const Text('INGRESAR', style: TextStyle(fontSize: 16)),
               ),
               const SizedBox(height: 16),
               TextButton(

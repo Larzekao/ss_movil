@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:ss_movil/shared/widgets/can.dart';
 
 /// Drawer reutilizable para las páginas de gestión de cuentas
 class AccountsDrawer extends StatefulWidget {
@@ -163,14 +164,43 @@ class _AccountsDrawerState extends State<AccountsDrawer> {
 
           const Divider(),
 
-          // Panel de Administración
+          // Órdenes
           ListTile(
-            leading: const Icon(Icons.admin_panel_settings, color: Colors.blue),
-            title: const Text('Panel de Admin'),
-            selected: widget.currentRoute == '/admin',
+            leading: const Icon(Icons.receipt_long, color: Colors.teal),
+            title: const Text('Órdenes'),
+            selected: widget.currentRoute?.startsWith('/admin/orders') ?? false,
             onTap: () {
               Navigator.pop(context);
-              context.go('/admin');
+              context.go('/admin/orders');
+            },
+          ),
+          // Reportes
+          // Solo mostrar si el usuario tiene permiso para ver/generar reportes
+          // Utiliza el helper `CanMultiple` para comprobar 'reportes.ver' OR 'reportes.generar'
+          // (El widget `CanMultiple` está en lib/shared/widgets/can.dart)
+          CanMultiple(
+            permissionCodes: ['reportes.ver', 'reportes.generar'],
+            requireAll: false,
+            child: ListTile(
+              leading: const Icon(Icons.insert_chart, color: Colors.blueGrey),
+              title: const Text('Reportes'),
+              selected:
+                  widget.currentRoute?.startsWith('/admin/reports') ?? false,
+              onTap: () {
+                Navigator.pop(context);
+                context.go('/admin/reports');
+              },
+            ),
+          ),
+
+          // IA - Predicciones
+          ListTile(
+            leading: const Icon(Icons.psychology, color: Colors.purple),
+            title: const Text('IA - Predicciones'),
+            selected: widget.currentRoute?.startsWith('/admin/ai') ?? false,
+            onTap: () {
+              Navigator.pop(context);
+              context.go('/admin/ai');
             },
           ),
         ],
