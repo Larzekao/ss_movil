@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:ss_movil/core/errors/failures.dart';
-import 'package:ss_movil/features/accounts/domain/entities/user.dart';
 import 'package:ss_movil/features/accounts/domain/repositories/users_repository.dart';
 
 /// Caso de uso para listar usuarios con paginación y filtros

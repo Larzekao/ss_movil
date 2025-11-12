@@ -1045,7 +1045,7 @@ class _ReportsPageState extends ConsumerState<ReportsPage> {
       final tempDir = await getTemporaryDirectory();
       final sanitizedFilename = filename.isNotEmpty
           ? filename
-          : 'reporte_${DateTime.now().millisecondsSinceEpoch}.${_selectedFormat}';
+          : 'reporte_${DateTime.now().millisecondsSinceEpoch}.$_selectedFormat';
 
       final file = File('${tempDir.path}/$sanitizedFilename');
       await file.writeAsBytes(bytes);

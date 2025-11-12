@@ -8,9 +8,6 @@ import 'package:ss_movil/features/products/infrastructure/datasources/brands_rem
 import 'package:ss_movil/features/products/infrastructure/datasources/brands_remote_ds_impl.dart';
 import 'package:ss_movil/features/products/infrastructure/datasources/sizes_remote_ds.dart';
 import 'package:ss_movil/features/products/infrastructure/datasources/sizes_remote_ds_impl.dart';
-import 'package:ss_movil/features/products/infrastructure/dtos/category_dto.dart';
-import 'package:ss_movil/features/products/infrastructure/dtos/brand_dto.dart';
-import 'package:ss_movil/features/products/infrastructure/dtos/paged_dto.dart';
 import 'package:ss_movil/features/products/infrastructure/repositories/categories_repository_impl.dart';
 import 'package:ss_movil/features/products/infrastructure/repositories/brands_repository_impl.dart';
 import 'package:ss_movil/features/products/infrastructure/repositories/sizes_repository_impl.dart';

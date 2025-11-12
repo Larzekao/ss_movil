@@ -1,4 +1,5 @@
 /// Modelos del dominio de Inteligencia Artificial
+library;
 
 /// Respuesta del dashboard de IA
 class AiDashboardResponse {
@@ -269,20 +270,20 @@ class AiException implements Exception {
 }
 
 class AiUnauthorizedException extends AiException {
-  const AiUnauthorizedException([String message = 'No autorizado'])
-    : super(message, statusCode: 401);
+  const AiUnauthorizedException([super.message = 'No autorizado'])
+    : super(statusCode: 401);
 }
 
 class AiBadRequestException extends AiException {
-  const AiBadRequestException([String message = 'Solicitud inválida'])
-    : super(message, statusCode: 400);
+  const AiBadRequestException([super.message = 'Solicitud inválida'])
+    : super(statusCode: 400);
 }
 
 class AiServerException extends AiException {
-  const AiServerException([String message = 'Error del servidor'])
-    : super(message, statusCode: 500);
+  const AiServerException([super.message = 'Error del servidor'])
+    : super(statusCode: 500);
 }
 
 class AiNetworkException extends AiException {
-  const AiNetworkException([String message = 'Error de red']) : super(message);
+  const AiNetworkException([super.message = 'Error de red']);
 }

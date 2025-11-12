@@ -1,6 +1,5 @@
 import 'package:ss_movil/features/accounts/domain/entities/user.dart';
 import 'package:ss_movil/features/accounts/infrastructure/dtos/user_dto.dart';
-import 'package:ss_movil/features/accounts/infrastructure/mappers/role_mapper.dart';
 
 /// Mapper: UserDto ↔ User
 extension UserMapper on UserDto {

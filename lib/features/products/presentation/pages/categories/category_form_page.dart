@@ -386,7 +386,7 @@ class _CategoryFormPageState extends ConsumerState<CategoryFormPage> {
                                   _activa = value;
                                 });
                               },
-                              activeColor: Colors.teal,
+                              activeThumbColor: Colors.teal,
                               contentPadding: EdgeInsets.zero,
                             ),
                           ],

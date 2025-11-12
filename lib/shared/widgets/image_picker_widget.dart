@@ -11,13 +11,13 @@ class ImagePickerWidget extends StatefulWidget {
   final IconData? icon;
 
   const ImagePickerWidget({
-    Key? key,
+    super.key,
     required this.onImageSelected,
     this.onMultipleImagesSelected,
     this.allowMultiple = false,
     this.label,
     this.icon,
-  }) : super(key: key);
+  });
 
   @override
   State<ImagePickerWidget> createState() => _ImagePickerWidgetState();

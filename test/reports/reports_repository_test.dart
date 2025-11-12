@@ -108,7 +108,7 @@ void main() {
 
         // Assert
         expect(result, isNotNull);
-        final (data, name, mimeType) = result!;
+        final (data, name, mimeType) = result;
         expect(data, equals(bytes));
         expect(name, equals(filename));
         expect(mimeType, equals('application/pdf'));
@@ -160,7 +160,7 @@ void main() {
 
           // Assert
           expect(result, isNotNull);
-          final (_, name, _) = result!;
+          final (_, name, _) = result;
           expect(
             name,
             equals(testCase['expected']),
@@ -195,7 +195,7 @@ void main() {
 
         // Assert
         expect(result, isNotNull);
-        final (_, name, _) = result!;
+        final (_, name, _) = result;
         expect(name, startsWith('reporte_'));
         expect(name, endsWith('.pdf'));
       },
@@ -333,7 +333,7 @@ void main() {
 
       // Assert
       expect(result, isNotNull);
-      final (data, name, mimeType) = result!;
+      final (data, name, mimeType) = result;
       expect(data, equals(bytes));
       expect(name, equals(filename));
       expect(

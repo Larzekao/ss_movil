@@ -4,7 +4,6 @@ import 'package:ss_movil/core/storage/secure_storage.dart';
 import 'package:ss_movil/features/accounts/domain/entities/user.dart';
 import 'package:ss_movil/features/accounts/domain/repositories/auth_repository.dart';
 import 'package:ss_movil/features/accounts/infrastructure/datasources/auth_remote_datasource.dart';
-import 'package:ss_movil/features/accounts/infrastructure/mappers/user_mapper.dart';
 
 /// Implementación del repositorio de autenticación (Infrastructure)
 class AuthRepositoryImpl implements AuthRepository {

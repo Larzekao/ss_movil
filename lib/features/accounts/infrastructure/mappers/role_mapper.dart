@@ -1,6 +1,5 @@
 import 'package:ss_movil/features/accounts/domain/entities/role.dart';
 import 'package:ss_movil/features/accounts/infrastructure/dtos/role_dto.dart';
-import 'package:ss_movil/features/accounts/infrastructure/mappers/permission_mapper.dart';
 
 /// Mapper: RoleDto ↔ Role
 extension RoleMapper on RoleDto {
